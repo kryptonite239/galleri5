@@ -19,9 +19,9 @@ export default function Home() {
   const { user } = useAuth();
   const router = useRouter();
 
-  if (user) {
-    router.push(`/user/${user.uid}`);
-  }
+  // if (user) {
+  //   router.push(`/user/${user.uid}`);
+  // }
   function onCaptchVerify() {
     if (!window.recaptchaVerifier) {
       window.recaptchaVerifier = new RecaptchaVerifier(
@@ -63,13 +63,15 @@ export default function Home() {
         try {
           const quertSnap = await getDocs(collection(db, "Users"));
           let userExists = false;
+          let userId;
           quertSnap.forEach((doc) => {
-            if (doc.data().uid == res.user.uid) {
+            if (doc.data().phoneNumber === value) {
+              userId = doc.data().uid;
               userExists = true;
             }
           });
           if (userExists) {
-            router.push(`/user/${res.user.uid}`);
+            router.push(`/user/${userId}`);
           } else router.push(`/register/${res.user.uid}`);
         } catch (err) {}
       })

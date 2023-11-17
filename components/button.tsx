@@ -6,7 +6,9 @@ const SignOut = () => {
   const router = useRouter();
   const signOut = async () => {
     try {
-      await auth.signOut().then(() => router.push("/"));
+      await auth.signOut().then(() => {
+        router.push("/");
+      });
     } catch (err) {
       console.log(err);
     }
