@@ -29,7 +29,6 @@ export default function Register() {
       <input type="text" name="lname" placeholder="Last Name" />
       <input type="email" name="email" placeholder="E-mail" />
       <button type="submit">Continue</button>
-      <button onClick={signOut}>Cancel</button>
     </form>
   );
 }
